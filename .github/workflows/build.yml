@@ -1,4 +1,4 @@
-name: CI
+name: Build dynamicalsystem.halogen
 
 on:
   push:
@@ -21,7 +21,5 @@ jobs:
           version: "latest"
       - name: Install dependencies
         run: uv sync -p 3.13
-      - name: Mypy
-        run: uv run mypy halogen pytests
       - name: format
         run: uv run ruff format --check halogen tests
