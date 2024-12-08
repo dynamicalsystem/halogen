@@ -19,4 +19,5 @@ pytests = { workspace = true }
 [dependency-groups]
 dev = [
     "pytest>=8.3.4",
+    "ruff>=0.8.2",
 ]
