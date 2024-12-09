@@ -110,32 +110,30 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "halogen" },
-    { name = "pytests" },
 ]
 
 [package.dev-dependencies]
 dev = [
     { name = "pytest" },
+    { name = "pytests" },
     { name = "ruff" },
     { name = "twine" },
 ]
 
 [package.metadata]
-requires-dist = [
-    { name = "halogen", editable = "halogen" },
-    { name = "pytests", editable = "pytests" },
-]
+requires-dist = [{ name = "halogen", editable = "halogen" }]
 
 [package.metadata.requires-dev]
 dev = [
     { name = "pytest", specifier = ">=8.3.4" },
+    { name = "pytests", editable = "pytests" },
     { name = "ruff", specifier = ">=0.8.2" },
     { name = "twine", specifier = ">=6.0.1" },
 ]
 
 [[package]]
 name = "halogen"
-version = "0.1.0"
+version = "0.1.1"
 source = { editable = "halogen" }
 dependencies = [
     { name = "python-dotenv" },

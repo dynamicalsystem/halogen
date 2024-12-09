@@ -1,7 +1,7 @@
 [project]
 name = "halogen"
-version = "0.1.0"
-description = "Add your description here"
+version = "0.1.1"
+description = "Shared library from dynamicalsystem"
 readme = "README.md"
 authors = [
     { name = "Simon Horrobin", email = "simon@horrobin.net" }
