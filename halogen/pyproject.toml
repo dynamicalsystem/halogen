@@ -1,10 +1,10 @@
 [project]
-name = "halogen"
-version = "0.1.1"
+name = "dynamicalsystem.halogen"
+version = "0.1.3"
 description = "Shared library from dynamicalsystem"
 readme = "README.md"
 authors = [
-    { name = "Simon Horrobin", email = "simon@horrobin.net" }
+    { name = "Simon Horrobin", bluesky = "@dynamicalsystem" }
 ]
 requires-python = ">=3.13"
 dependencies = [
@@ -12,6 +12,18 @@ dependencies = [
     "requests>=2.32.3",
 ]
 
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "License :: OSI Approved :: MIT License",
+]
+
+[project.scripts]
+halogen = "dynamicalsystem.halogen:main"
+
+[tool.hatch.metadata]
+allow-direct-references = true
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"

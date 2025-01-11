@@ -1,24 +1,27 @@
 [project]
-name = "dynamicalsystem.halogen"
+name = "halogen-workspace"
 version = "0.1.0"
-description = "Add your description here"
+description = "Shared library from dynamicalsystem"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = [
-    "halogen",
-]
+dependencies = []
 
 [tool.uv.workspace]
-members = ["halogen", "pytests"]
+members = [
+    "halogen",
+    "dynamicalsystem-pytests",
+]
 
 [tool.uv.sources]
-halogen = { workspace = true }
-pytests = { workspace = true }
+dynamicalsystem-halogen = { workspace = true }
+dynamicalsystem-pytests = { path = "pytests", editable = true }
+
+[tool.setuptools]
+py-modules = []
 
 [dependency-groups]
 dev = [
     "pytest>=8.3.4",
-    "pytests",
-    "ruff>=0.8.2",
-    "twine>=6.0.1",
+    "dynamicalsystem-halogen>=0.1.0",
+    "dynamicalsystem-pytests>=0.1.0",
 ]
