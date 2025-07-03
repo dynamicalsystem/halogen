@@ -74,11 +74,10 @@ class _Config:
 
         self._package_attributes(root_folder)
 
-        object.__setattr__(
-            self,
-            "data_folder",
-            join(root_folder, self._namespace, "data"),
-        )
+        data_folder = join(root_folder, self._namespace, "data")
+        object.__setattr__(self, "data_folder", data_folder)
+        logger.info(f"Data folder: {data_folder}")
+        logger.info(f"Environment: {environment}")
 
         namespace_values = dotenv_values(self._namespace_file)
         logger.debug(f"Found {len(namespace_values)} variables in namespace config")
