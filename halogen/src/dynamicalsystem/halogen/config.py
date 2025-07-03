@@ -64,7 +64,11 @@ class _Config:
             f"{self._namespace}.{environment}.env",
         )
         object.__setattr__(self, "_namespace_file", namespace_file)
-        logger.info(f"Loading namespace config from: {namespace_file}")
+        logger.info(f"Looking for namespace config file: {namespace_file}")
+        if isfile(namespace_file):
+            logger.info(f"Found namespace config file: {namespace_file}")
+        else:
+            logger.warning(f"Namespace config file not found: {namespace_file}")
 
         object.__setattr__(self, "environment", environment)
 
@@ -103,7 +107,7 @@ class _Config:
             f"{self._package}.{self.environment}.env",
         )
 
-        logger.debug(f"Checking for package config file: {file}")
+        logger.info(f"Looking for package config file: {file}")
 
         package_file = join(
             root_folder,
@@ -114,7 +118,7 @@ class _Config:
         object.__setattr__(self, "_package_file", package_file)
 
         if isfile(file):
-            logger.info(f"Loading package config from: {package_file}")
+            logger.info(f"Found package config file: {package_file}")
 
             package_values = dotenv_values(file)
             logger.debug(f"Found {len(package_values)} variables in package config")
@@ -124,7 +128,7 @@ class _Config:
                     object.__setattr__(self, attribute.casefold(), value)
                     logger.debug(f"Set package config: {attribute.casefold()} from {key}")
         else:
-            logger.debug(f"Package config file not found: {file}")
+            logger.info(f"Package config file not found: {file} (optional)")
 
     def _parse_context(self, context: str):
         _ = context.split(".")
@@ -159,6 +163,10 @@ def config_instance(context: str):
         exit("No configuration context provided")
 
     logger.info(f"Creating config instance for context: {context}")
+    logger.info(f"Config will look for files based on:")
+    logger.info(f"  - Namespace: {context.split('.')[0] if '.' in context else context}")
+    logger.info(f"  - Package: {context.split('.')[1] if len(context.split('.')) > 1 else context.split('.')[0]}")
+    logger.info(f"  - Environment: Set by {context.split('.')[0].upper()}_ENVIRONMENT env var")
     config = _Config(context)
     logger.debug(f"Config instance created with {len(dir(config))} attributes")
     logger.debug(f"Package: {config._package}")
